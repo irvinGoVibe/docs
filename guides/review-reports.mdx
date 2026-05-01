@@ -1,0 +1,108 @@
+---
+title: "Reviewing AI reports and scoring participants"
+description: "Open each participant's report, explore AI analysis across five tabs, enter your Jury Scores with slider controls, and submit your final evaluation."
+---
+
+After judging completes, every participant with `AI Report Ready` status has a full analysis waiting for you. The report presents the AI's reasoning in five tabs, starting with an executive summary and ending with the scoring interface where you enter your own Jury Score. The AI score is always visible alongside your inputs as an advisory reference — it informs your decision but does not determine the outcome.
+
+## Opening a report
+
+You can reach a participant's report from two places:
+
+- **Project Overview** — click any participant row with `AI Report Ready` status.
+- **Jury Review list** — click any participant row.
+
+When you open a report from the Jury Review list, the report opens directly on the **Jury Preparation** tab, where you enter your scores. Opening from anywhere else defaults to the **Executive Summary** tab.
+
+## Report tabs
+
+### Executive summary
+
+This tab gives you a complete picture of the AI's assessment before you enter scores.
+
+- **Pitch deck carousel** — slides from the participant's deck, with completeness flags highlighting any missing sections.
+- **Project description** — the text the participant submitted describing their project (read-only).
+- **AI consolidated summary** — a narrative paragraph from the Summarizer drawing on all six judge outputs.
+- **AI Total Score** — the overall score on a 0.0–10.0 scale, with per-dimension P1–P6 scores and confidence labels.
+- **Why it can pass / Why it can fail / What to confirm live** — three focused sections that surface the strongest signals for and against the project, and flag what needs to be verified in your live Q&A session.
+- **Strengths and weaknesses** — consensus-marked signals aggregated across all six judges.
+- **Deck completeness signals** — flags for content blocks that are missing or weakly addressed in the pitch:
+  - Problem statement
+  - Solution explanation
+  - Business model / GTM
+  - Roadmap and feasibility
+  - Team evidence
+  - Market evidence
+
+### Jury preparation
+
+This is the primary working tab. It combines the scoring interface with the AI-generated questions for your live session.
+
+**Scoring matrix** — shows the AI score per dimension as a read-only reference.
+
+**Questions for participants** — AI-generated questions grouped by priority:
+
+| Group | When to use |
+|---|---|
+| Critical | Ask these; they address major gaps or risks |
+| Important | Ask if time allows |
+| Optional | Context-building questions you can skip |
+
+Each question shows the linked criterion (P1–P6), why it matters, and which judge raised it. Use the **Answer notes** field to capture what the participant said — these notes are optional and do not affect scoring.
+
+**Entering your Jury Score:**
+
+Use the sliders at the bottom of the tab to score each dimension from 0.0 to 10.0 in steps of 0.1. Use the **+** and **−** buttons for decimal-level precision.
+
+For each dimension you will see:
+
+- Your slider (editable)
+- The AI score for that dimension (read-only)
+- A live **delta** (your score minus the AI score) — green for positive, red for negative, gray for zero
+- An optional comment field
+
+Click **Submit Vote** when all six dimensions are filled. Submitting changes the participant's status to `Scored`.
+
+<Note>
+  Submit Vote is disabled until all six criteria have values. You cannot partially submit a vote.
+</Note>
+
+**Resubmitting:** After you submit, you can change any value. As soon as you modify a slider or comment, a **Resubmit** button appears. If you navigate away without resubmitting, AI Jury warns you that your changes have not been saved as a final vote.
+
+### Scores
+
+This tab explains how the AI calculated its scores and lets you inspect the full judge contribution breakdown.
+
+- **Methodology** — explains the confidence-adjusted scoring formula and how dimension weights are applied.
+- **AI Score Formation table** — per-dimension breakdown showing AI score, weight, weighted contribution, and confidence level for each of P1–P6.
+- **Judge Contribution Matrix** — a grid of judges × dimensions showing each judge's role (Primary, Secondary, or Advisory) and their score for each dimension. Cells with high spread between judges are highlighted to signal areas where the AI was less certain.
+- **P1–P6 detailed breakdown** — six accordion sections, one per dimension, each showing the supporting signals, signals that reduce the score, and move-up / move-down indicators.
+
+### Judges
+
+Six accordion cards, one per judge, give you the unfiltered view of each judge's reasoning.
+
+Each card contains:
+
+- **Primary concern** — the main issue or risk this judge identified
+- **Would ask live** — the question this judge considers most important for the live session
+- **Scores per dimension** — this judge's individual scores across the dimensions they cover
+- **Top signals with evidence** — specific excerpts from the participant's materials that drove the scores
+- **Raw reasoning toggle** — the judge's full unstructured reasoning, available if you want to dig deeper
+
+### Reviewer
+
+A duplicate of the scoring matrix from the Jury Preparation tab, displayed here for quick reference without having to scroll back up. Changes you make on the Jury Preparation tab sync to this tab in real time.
+
+## Jury Score summary
+
+| Concept | Details |
+|---|---|
+| Scale | 0.0 to 10.0, step 0.1 |
+| Input method | Slider with +/− buttons |
+| AI Score visibility | Always visible alongside your slider, read-only |
+| Delta | Live (your score − AI score); color-coded |
+| Comments | Optional per dimension |
+| Submit | Requires all six criteria to be filled |
+| Resubmit | Available after any change post-submit; unsaved changes trigger a warning |
+| Post-submit status | Participant moves to `Scored` |

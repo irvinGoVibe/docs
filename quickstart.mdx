@@ -1,0 +1,137 @@
+---
+title: "Quickstart: run your first AI Jury project end-to-end"
+description: "Create a project, add a participant, run AI judging, review the report, set your Jury Scores, and publish your first leaderboard in one session."
+---
+
+This guide walks you through a complete AI Jury workflow — from creating an account to publishing a leaderboard. Follow the steps in order; each one picks up where the previous left off.
+
+<Steps>
+  <Step title="Sign up or sign in">
+    Go to AI Jury and create an account or sign in.
+
+    You can sign up with an **email and password** or continue with **Google**. If you use email, check your inbox for a verification link and click it before proceeding — your account isn't active until you verify.
+
+    After signing in, you land on the **Dashboard**, which lists all your projects.
+  </Step>
+
+  <Step title="Create a project">
+    Click **Create project** in the dashboard header. This opens the five-step project wizard.
+
+    Work through each step in order:
+
+    | Step | What you configure |
+    |---|---|
+    | **1. Mode** | Choose your evaluation format. Select **Pitch Competition** — this is the primary mode in the current version, with a six-judge panel covering dimensions P1–P6. |
+    | **2. Details** | Enter a project name, description, start and end dates, and timezone. |
+    | **3. Criteria** | Set the scoring criteria and their weights. Weights must add up to 100%. The **Next** button stays disabled until they do. |
+    | **4. Judges** | Review the preset Pitch Competition judge panel. The six judges and their dimension assignments are pre-configured. You can adjust dimension weights if needed. |
+    | **5. Participants** | Choose how you'll collect submissions. Select **Manual** to add participants yourself, or **Self-upload** to generate a public link participants can use to submit their own materials. |
+
+    Completing step 5 saves the project and opens **Project Overview**.
+
+    <Tip>
+      The wizard auto-saves after every change. If you close it before finishing, click the project card on the Dashboard to pick up where you left off.
+    </Tip>
+  </Step>
+
+  <Step title="Add your first participant">
+    On the Project Overview page, click **Add participant**. A modal form opens.
+
+    Fill in the required fields:
+
+    - **Participant name** — the person's full name
+    - **Project name** — the name of their startup or project
+    - **Pitch deck** — upload a PDF or PPTX file, or paste a Google Slides URL
+
+    You can also attach an optional video link, repository URL, or a comment for your own reference.
+
+    Click **Save**. The participant appears in the table. If you attached a pitch deck, their status shows as **Ready** — meaning they're eligible for AI judging.
+
+    <Note>
+      A participant must have a pitch deck (uploaded file or Google Slides URL) to be judged. Participants without one show as **Pending** and are skipped when judging runs.
+    </Note>
+  </Step>
+
+  <Step title="Run AI judging">
+    Once at least one participant has **Ready** status, the **Start Judging** button becomes active. Click it.
+
+    A progress modal opens and the project moves into **judging** status. The pipeline runs each submission through four stages:
+
+    1. **Decoder** — extracts and normalizes text from the pitch deck (PDF, PPTX, or Google Slides)
+    2. **AI Judges** — six specialized judges evaluate the submission in parallel across dimensions P1–P6
+    3. **Summarizer** — aggregates the six judge outputs into a unified report structure
+    4. **Scoring** — calculates per-dimension scores, confidence-adjusted aggregates, and spread labels (Consensus / Split / Conflict)
+
+    You can close the modal without stopping the pipeline — judging continues in the background. Reopen the modal at any time to check progress.
+
+    When all submissions finish processing, the project moves to **reviewing** status.
+  </Step>
+
+  <Step title="Review the participant report">
+    From Project Overview, click a participant's name to open their report. The report opens on the **Executive Summary** tab by default.
+
+    The report has five tabs:
+
+    | Tab | What it shows |
+    |---|---|
+    | **Executive Summary** | AI scores for P1–P6 with confidence labels, a project summary, strengths and weaknesses with consensus markers, and reasons why the project might or might not advance |
+    | **Jury Preparation** | The scoring matrix with AI scores as reference, plus a block of suggested questions for your live Q&A session |
+    | **Scores** | Methodology overview, per-dimension score breakdowns, and the judge contribution matrix with spread indicators |
+    | **Judges** | Six accordion cards — one per AI judge — with each judge's primary concern, suggested live questions, scores, top signals, and raw reasoning |
+    | **Reviewer** | A duplicate of the Jury Preparation scoring matrix, kept in sync in real time |
+
+    Read through the Executive Summary and Judges tabs to understand how the AI analyzed this participant before you score them.
+  </Step>
+
+  <Step title="Set your Jury Score">
+    Click the **Jury Preparation** tab. This is where you enter your final scores.
+
+    The scoring matrix shows each dimension (P1–P6) with:
+    - The AI's suggested score as a read-only reference
+    - A slider (0–10, in 0.1 increments) for your Jury Score
+    - A live delta indicator showing the difference between your score and the AI's
+
+    Drag each slider to the score you want to assign. Use the **+** and **−** buttons for precise adjustments. You can also add an optional comment per dimension.
+
+    When you're satisfied, click **Save**. Your scores are saved as a draft immediately. You can return and adjust them any time before you generate the leaderboard.
+
+    <Tip>
+      You don't have to score every dimension in one sitting. A counter shows how many of the six dimensions you've filled in. Come back to finish later if needed.
+    </Tip>
+  </Step>
+
+  <Step title="Generate the leaderboard">
+    After scoring participants, return to Project Overview. When you're ready to finalize results, click **Generate leaderboard** (or the equivalent button in your project view).
+
+    A confirmation dialog appears. Confirm to:
+
+    - Lock all Jury Scores as read-only
+    - Move the project to **Scored** status
+    - Rank participants by their Jury Score, weighted by the criteria you set in the wizard
+
+    The leaderboard shows each participant's rank, name, project name, final Jury Score, and their AI Mode Score for reference. AI scores appear in a lighter style — they're informational, not the ranking basis.
+
+    <Note>
+      If some participants don't have submitted Jury Scores yet, you'll see a warning before generating. You can still proceed — the system won't hard-block you — but unscored participants won't rank correctly.
+    </Note>
+
+    Participant reports remain accessible as read-only after the leaderboard is created, preserving the full audit trail between AI analysis and your final decisions.
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Core concepts" icon="lightbulb" href="/concepts/overview">
+    Understand the evaluation flow and pipeline in depth.
+  </Card>
+  <Card title="Collect submissions" icon="inbox" href="/guides/collect-submissions">
+    Set up a public self-upload page for participants.
+  </Card>
+  <Card title="Report structure" icon="file-lines" href="/reference/report-structure">
+    See a full breakdown of every tab and field in the participant report.
+  </Card>
+  <Card title="Project statuses" icon="circle-dot" href="/reference/project-statuses">
+    Understand what each project and participant status means.
+  </Card>
+</CardGroup>

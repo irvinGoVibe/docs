@@ -1,0 +1,134 @@
+---
+title: 'How scores are calculated in AI Jury'
+description: 'Understand AI Score and Jury Score — the confidence-adjusted formula, spread labels that flag judge disagreement, and why the leaderboard ranks by Jury Score.'
+---
+
+AI Jury produces two distinct scores for every participant: an **AI Score** calculated automatically by the judge panel, and a **Jury Score** that you enter manually during Jury Review. These scores serve different purposes and live in separate layers — the AI Score is advisory, the Jury Score is final, and the leaderboard ranks only by the Jury Score.
+
+## Two score types
+
+| Score | What it is | Who sets it | Purpose |
+|---|---|---|---|
+| **AI Score** | Weighted aggregate of all judge outputs, adjusted for confidence | The AI judge panel | Advisory reference during Jury Review |
+| **Jury Score** | Your score per dimension, entered on a 0.0–10.0 scale | You | Final input that determines leaderboard ranking |
+
+AI Score and Jury Score are always visible side by side during Jury Review. The delta between them updates live as you move the slider, so you can see exactly how your judgment compares to the AI baseline.
+
+## How the AI Score is calculated
+
+The AI Score is built in two steps: a per-dimension score, then a mode-level aggregate.
+
+### Step 1: Per-dimension score A(d)
+
+For each dimension `d`, the platform computes a confidence-adjusted score across all judges that cover that dimension:
+
+```
+A(d) = R(d) × [1 − 0.15 × (1 − C(d))]
+```
+
+Where:
+- `R(d)` is the raw weighted average of judge scores for dimension `d`, weighted by each judge's contribution role (Primary / Secondary / Advisory)
+- `C(d)` is the aggregate confidence level for the dimension, mapped to a numeric value
+
+**Confidence multipliers:**
+
+| Confidence level | Numeric value (C) |
+|---|---|
+| `low` | 0.55 |
+| `medium` | 0.70 |
+| `high` | 0.85 |
+
+Higher confidence produces a score closer to the raw average. Lower confidence pulls the score toward the middle, reflecting uncertainty in the AI's signal.
+
+### Step 2: Mode Score (MS)
+
+The Mode Score is the weighted sum of all per-dimension scores using the dimension weights configured in your project:
+
+```
+Mode Score = Σ_d (weight(d) × A(d))
+```
+
+Weights are set in Wizard Step 3 and must sum to 100%. They are locked after you click **Start Judging**.
+
+<Note>
+  The Mode Score is the AI's overall score for a participant. It appears on the participant list, in the report header, and on the leaderboard as a reference column — but it does not determine ranking.
+</Note>
+
+## Dimension weights
+
+You configure dimension weights in Step 3 of the Wizard (Criteria). For preset modes, default weights are provided but you can adjust them.
+
+<Tabs>
+  <Tab title="Pitch Competition defaults">
+    | Dimension | Default weight |
+    |---|---|
+    | P1 — Problem | 15% |
+    | P2 — Solution Logic | 15% |
+    | P3 — Market / Business Value | 20% |
+    | P4 — Pitch Quality | 15% |
+    | P5 — Team Readiness | 20% |
+    | P6 — Feasibility | 15% |
+  </Tab>
+  <Tab title="Hackathon defaults">
+    | Dimension | Default weight |
+    |---|---|
+    | H1 — Innovation | 30% |
+    | H2 — Technical Execution | 20% |
+    | H3 — Technical Depth | 15% |
+    | H4 — Business Value | 15% |
+    | H5 — Pitch Quality | 10% |
+    | H6 — Feasibility | 10% |
+  </Tab>
+</Tabs>
+
+<Warning>
+  Weights are locked the moment you click **Start Judging**. AI Score, Jury Score, and the leaderboard all use the same weights, so changing them after judging begins would make the scores incomparable.
+</Warning>
+
+## Spread labels
+
+For each dimension, the report calculates a **spread** — the range of scores across the judges that cover that dimension. The spread is labeled to make disagreement immediately visible.
+
+| Label | Spread range | What to do |
+|---|---|---|
+| `CONSENSUS` | < 1.5 | Judges broadly agree. Trust the signal. |
+| `SPLIT` | 1.5 – 2.99 | Notable divergence. Examine the individual judge cards. |
+| `CONFLICT` | ≥ 3.0 | Significant disagreement. Review carefully during Jury Review and probe with live Q&A. |
+
+Spread labels appear in the Scores tab of each participant report and are highlighted in the Judge Contribution Matrix when they reach `SPLIT` or `CONFLICT`.
+
+## Jury Score
+
+The Jury Score is your final evaluation input. You enter it during Jury Review using a slider for each dimension.
+
+- **Range:** 0.0 – 10.0
+- **Increment:** 0.1 steps (use **+** / **−** for fine control)
+- **Delta indicator:** The difference between your score and the AI Score updates live as you move each slider — green when your score is higher, red when lower, grey when identical
+- **AI Score visibility:** The AI Score per dimension is always visible alongside the slider as a read-only reference
+
+All required dimensions must be filled before you can submit. You can resubmit after the initial submission if you change a score — the system marks the participant as `changed_after_submit` until you confirm the update.
+
+## Leaderboard ranking
+
+The leaderboard ranks participants by their **Jury Score**, weighted by your project criteria. The AI Mode Score appears as a reference column but has no effect on ranking.
+
+```
+Leaderboard rank = Jury Score weighted by project criteria
+```
+
+Once you generate the leaderboard, the project moves to `scored` and all inputs — including Jury Scores — become read-only.
+
+## Judge Contribution Matrix
+
+The **Judge Contribution Matrix** in the Scores tab shows each judge's role and score for every dimension. It gives you a transparent breakdown of how the per-dimension AI Score was assembled.
+
+<AccordionGroup>
+  <Accordion title="How to read the matrix">
+    Each row is a dimension. Each column is a judge. The cell shows the judge's raw score for that dimension and their contribution role (Primary, Secondary, or Advisory). Cells for dimensions a judge does not cover are empty.
+
+    Dimensions with a `SPLIT` or `CONFLICT` spread label are highlighted in the matrix, making it easy to spot where to focus your attention during Jury Review.
+  </Accordion>
+  <Accordion title="What happens when a judge fails">
+    If a judge fails during the pipeline run, its cells in the matrix are marked as unevaluated. The per-dimension score is still calculated using the remaining judges that cover the dimension — the failed judge is simply excluded from the aggregate.
+  </Accordion>
+</AccordionGroup>

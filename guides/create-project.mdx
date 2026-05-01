@@ -1,0 +1,98 @@
+---
+title: "Creating a project in AI Jury"
+description: "Walk through the five-step wizard to set your evaluation mode, criteria weights, judge panel, and submission collection method before accepting pitches."
+---
+
+Every project in AI Jury starts with a five-step wizard that locks in your evaluation rules before you collect a single pitch. Completing the wizard takes a few minutes, and any change you make autosaves within two seconds — so you can close the browser and pick up exactly where you left off.
+
+<Steps>
+  <Step title="Choose a mode">
+    Select the evaluation mode that matches your event type. The mode you pick determines your judge panel, the scoring dimensions used for AI analysis, and how participant materials are interpreted.
+
+    | Mode | Status | What it evaluates |
+    |---|---|---|
+    | **Pitch Competition** | Available | Idea strength, market opportunity, team fit, and pitch clarity across six dimensions (P1–P6) |
+    | **Hackathon** | Coming soon | Working prototypes, technical execution, and demo quality |
+    | **Custom** | Coming soon | Define your own judge panel and evaluation dimensions |
+
+    For now, select **Pitch Competition** to proceed.
+  </Step>
+
+  <Step title="Enter project details">
+    Give your project a name and fill in the event dates. These details appear on your project card and, if you use self-upload, on the public submission page participants will see.
+
+    | Field | Required | Notes |
+    |---|---|---|
+    | Project name | Yes | Shown on your dashboard and on the public page |
+    | Description | No | Displayed in the About section of the public submission page |
+    | Start date | Yes | The event's opening date |
+    | End date | Yes | Must be on or after the start date |
+    | Timezone | No | Defaults to your browser's timezone |
+
+
+  </Step>
+
+  <Step title="Set criteria weights">
+    Pitch Competition uses six scoring dimensions (P1–P6). Assign a percentage weight to each dimension to reflect what matters most in your competition.
+
+    | Dimension | Default weight | What it measures |
+    |---|---|---|
+    | P1 — Problem | 15% | Sharpness and reality of the problem being solved |
+    | P2 — Solution Logic | 15% | Clarity of the solution and differentiation from alternatives |
+    | P3 — Market / Business Value | 20% | Market size, monetization strategy, and defensibility |
+    | P4 — Pitch Quality | 15% | Narrative structure, visual clarity, and overall delivery |
+    | P5 — Team Readiness | 20% | Team composition, relevant experience, and founder-market fit |
+    | P6 — Feasibility | 15% | Realism of the plan, resources, and operational readiness |
+
+    The **Next** button stays disabled until the weights sum to exactly **100%**. You can redistribute them however you like — these are your competition's priorities.
+
+    <Warning>
+      Criteria weights are locked the moment you click **Start Judging**. AI scores, Jury scores, and the leaderboard all use the same weights, so they cannot be changed mid-evaluation.
+    </Warning>
+  </Step>
+
+  <Step title="Review the judge panel">
+    AI Jury's Pitch Competition mode comes with six pre-configured AI judges, one for each evaluation dimension. You do not need to add or remove judges — the preset panel is ready to go.
+
+    | Judge | Primary focus |
+    |---|---|
+    | J-P1 — Problem | How acute and validated the problem is |
+    | J-P2 — Solution Logic | Logical coherence and competitive differentiation |
+    | J-P3 — Business Value / Market | Market opportunity and monetization |
+    | J-P4 — Pitch Quality | Structure, narrative, and visual presentation |
+    | J-P5 — Team Readiness | Team experience and founder-market fit |
+    | J-P6 — Feasibility | Operational plan and realistic execution |
+
+    On this step you can adjust each judge's dimension weight within the panel (the weights that govern how individual judges contribute to each dimension score). The sum of these internal weights must equal **1.00**.
+
+    <Tip>
+      If you are not sure what to adjust here, the defaults work well for most pitch competitions. You can leave the panel weights as-is and move on.
+    </Tip>
+  </Step>
+
+  <Step title="Configure submission collection">
+    Choose how participants will get their materials into AI Jury.
+
+    **Manual** — You add each participant yourself from the Project Overview page after the wizard completes. Use this when you are managing a curated or invited list.
+
+    **Self-upload** — AI Jury generates a public submission page at `/e/<slug>`. Share that link with participants and they submit their own materials directly. No login is required to view the page; participants create an account with email verification only when they click **Submit**.
+
+    When you select self-upload, a preview of your public URL appears so you can confirm the link before sharing it.
+
+    **Optional settings (both methods):**
+
+    | Setting | Description |
+    |---|---|
+    | Required materials | Choose which of pitch deck, video, or repository participants must provide |
+    | Submission deadline | Date after which the public page closes and resubmissions are blocked |
+    | Participant limit | Maximum number of submissions the project will accept |
+
+    Click **Finish** to complete the wizard.
+  </Step>
+</Steps>
+
+After you complete step 5, your project moves to `collecting` status and the Project Overview opens — you are now ready to gather submissions.
+
+<Tip>
+  Autosave is active on every step. If you close the wizard partway through, click the project card on your dashboard to return to the exact step you left off.
+</Tip>

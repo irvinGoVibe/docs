@@ -1,0 +1,132 @@
+---
+title: 'AI judges: evaluation modes, panels, and scoring output'
+description: 'Learn what an AI judge is, how Pitch Competition and Hackathon panels are structured, what Custom mode configures, and what each judge produces per dimension.'
+---
+
+Every submission in AI Jury is evaluated by a panel of specialized AI judges. Each judge is a focused AI agent with a defined role, a system prompt that shapes its reasoning, and a set of dimensions it is responsible for scoring. Judges work in parallel and never see each other's scores — this isolation prevents collective bias and makes results reproducible. The evaluation mode you choose in the Wizard determines which panel runs and which dimensions are scored.
+
+## What is an AI judge?
+
+A judge is a single evaluation unit. It receives the normalized text of a pitch deck along with any supplementary materials (demo video link, repository, participant notes), then applies its role-specific system prompt to produce a structured output.
+
+Each judge produces the following for every dimension it covers:
+
+| Output field | Description |
+|---|---|
+| **Score** | 0–10 numeric score for this dimension |
+| **Confidence** | `low`, `medium`, or `high` — how clearly the materials support this score |
+| **Strengths** | What is working for this dimension |
+| **Weaknesses** | What is missing or unconvincing |
+| **Red flags** | Critical risks that warrant manual scrutiny |
+| **Evidence** | Direct quotes from the deck or materials, with source reference |
+| **Questions** | Suggested questions to ask the team during live Q&A |
+
+Evidence quotes make every score auditable — you can trace each number back to a specific place in the participant's materials.
+
+## Three evaluation modes
+
+You choose the mode in Step 1 of the Wizard. The mode determines the judge panel, the scoring dimensions, and the default dimension weights.
+
+<Tabs>
+  <Tab title="Pitch Competition">
+    **Thesis-first evaluation.** The central question is: how convincing is the idea's thesis? A demo is optional — the primary material is the pitch deck.
+
+    The panel has six judges, each covering a distinct lens.
+
+    | Code | Judge | Focus |
+    |---|---|---|
+    | J-P1 | Problem | Problem sharpness and evidence — how acute is the pain, who experiences it, how often, and what are they using today |
+    | J-P2 | Solution Logic | Solution differentiation and idea coherence — how clearly the proposed solution addresses the problem and stands apart from alternatives |
+    | J-P3 | Business Value / Market | Market size, monetization, and defensibility — revenue model, addressable market, and barriers to competition |
+    | J-P4 | Pitch Quality | Structure, narrative, and visuals — how well the deck conveys the story and converts attention into understanding |
+    | J-P5 | Team Readiness | Team composition and founder-market fit — relevant experience, capability to execute, and alignment between the team and the problem |
+    | J-P6 | Feasibility | Plan realism, resources, and operational viability — whether the timeline, budget, and operational plan hold up |
+
+    **Default dimension weights:**
+
+    | Code | Dimension | Default weight |
+    |---|---|---|
+    | P1 | Problem | 15% |
+    | P2 | Solution Logic | 15% |
+    | P3 | Market / Business Value | 20% |
+    | P4 | Pitch Quality | 15% |
+    | P5 | Team Readiness | 20% |
+    | P6 | Feasibility | 15% |
+
+    You can adjust these weights in Wizard Step 3. Weights are locked after you click **Start Judging**.
+  </Tab>
+  <Tab title="Hackathon">
+    **Execution-first evaluation.** The central question is: what did the team actually build in the time available? A demo is required — submissions without a demo are marked `INCOMPLETE` and are not evaluated by the judge panel.
+
+    The panel has five judges covering six dimensions. Technical Execution and Technical Depth are both covered by J-H2 through the routing matrix.
+
+    | Code | Judge | Focus |
+    |---|---|---|
+    | J-H1 | Innovation | Novelty of the idea, differentiation from existing solutions, and creative approach |
+    | J-H2 | Technical Execution | What was actually built during the hackathon — demo quality, feature coverage, and technical depth |
+    | J-H3 | Business Value | Application potential, first audience, and path to monetization |
+    | J-H4 | Pitch Quality | Clarity and persuasiveness of the demo pitch |
+    | J-H5 | Feasibility | How far the prototype can scale beyond the hackathon event |
+
+    **Default dimension weights:**
+
+    | Code | Dimension | Default weight |
+    |---|---|---|
+    | H1 | Innovation | 30% |
+    | H2 | Technical Execution | 20% |
+    | H3 | Technical Depth | 15% |
+    | H4 | Business Value | 15% |
+    | H5 | Pitch Quality | 10% |
+    | H6 | Feasibility | 10% |
+
+    <Warning>
+      Hackathon mode is coming in a future release. Only Pitch Competition is available in the current version.
+    </Warning>
+  </Tab>
+  <Tab title="Custom">
+    **Fully configurable panel.** Custom mode lets you build a judge panel tailored to your event format.
+
+    **Starting point.** Custom mode begins from a template — choose Pitch Competition or Hackathon as the base, then modify from there.
+
+    **What you can configure:**
+
+    - **Judges** — add a judge from the catalog, remove a judge from the panel, or create a new judge from scratch
+    - **Prompts** — edit the system prompt for any judge or write one for a judge that did not have one
+    - **Dimensions** — add, remove, or rename scoring dimensions
+    - **Weights** — set custom weights for each dimension (must sum to 1.00)
+
+    <Note>
+      In the current version, Custom mode inherits the judge-to-dimension routing matrix from the template you chose. Editing the routing matrix and marking dimensions as protected are post-MVP features.
+    </Note>
+
+    <Warning>
+      Custom mode is coming in a future release. Only Pitch Competition is available in the current version.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## How judges work together
+
+**Parallel and isolated.** All judges process the same submission at the same time. No judge has access to another judge's scores or reasoning at any point. This applies to both preset and Custom panels.
+
+**Fault tolerant.** If one judge fails — due to a provider timeout, a response format error, or any other issue — the remaining judges continue unaffected. The participant still receives a report; the failed judge's dimensions are flagged as unevaluated and excluded from aggregates.
+
+**Spread detection.** For each dimension, the report shows a spread label that reflects how much the judges covering that dimension diverged in their scores.
+
+| Label | Spread range | What it signals |
+|---|---|---|
+| `CONSENSUS` | < 1.5 | Judges broadly agree |
+| `SPLIT` | 1.5 – 2.99 | Notable divergence — worth examining |
+| `CONFLICT` | ≥ 3.0 | Significant disagreement — look closely during Jury Review |
+
+## Judge Contribution Matrix
+
+The **Judge Contribution Matrix** in the Scores tab of each participant report shows which judges contribute to each dimension and with what weight.
+
+| Role | Contribution weight |
+|---|---|
+| Primary | Full weight |
+| Secondary | Half weight |
+| Advisory | Quarter weight |
+
+A dimension can be covered by multiple judges at different contribution levels. The matrix lets you see exactly whose input is driving each dimension score and flag any high-spread cases that deserve extra attention during Jury Review.

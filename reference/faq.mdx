@@ -1,0 +1,151 @@
+---
+title: 'Frequently asked questions about AI Jury'
+description: 'Answers to common questions about getting started, AI judging and scoring, leaderboard finalization, submission formats, and file size limits.'
+---
+
+This page collects answers to the most common questions about AI Jury — from initial setup through finalizing your leaderboard. If your question is not covered here, use the navigation on the left to find the relevant guide or reference page.
+
+## Getting started
+
+<AccordionGroup>
+  <Accordion title="What pitch deck formats does AI Jury support?">
+    AI Jury accepts pitch decks in three formats:
+
+    - **PDF** — up to 50 MB
+    - **PPTX** — up to 50 MB
+    - **Google Slides** — paste the sharing URL directly into the submission form; no file upload needed
+
+    When the AI pipeline runs, it extracts and normalizes the text from your chosen format before passing it to the judge panel.
+  </Accordion>
+
+  <Accordion title="Can participants submit their own materials?">
+    Yes. When you set up your project in the wizard (step 5), you can choose **self-upload** mode. This generates a public submission page at `/e/<your-project-slug>`.
+
+    - Anyone can view the page without logging in.
+    - To submit an entry, participants complete an email verification step — no account creation required.
+    - Submissions appear in your participant table automatically.
+    - Participants can resubmit with updated materials up until the submission deadline.
+
+    You can share the public URL with participants directly from the Project Overview screen.
+  </Accordion>
+
+  <Accordion title="What is the difference between Pitch Competition and Hackathon mode?">
+    The two modes use different judge panels and evaluation dimensions, reflecting the different things you are trying to assess.
+
+    **Pitch Competition** is thesis-first. The primary material is the pitch deck. Six AI judges evaluate submissions across dimensions P1–P6, covering areas like problem significance, solution logic, market attractiveness, team readiness, and feasibility. A demo video is optional.
+
+    **Hackathon** is execution-first. What the team actually built is the main focus. Five AI judges evaluate submissions across dimensions H1–H6, covering innovation, technical execution, technical depth, business value, pitch quality, and feasibility. A demo is required — submissions without one are marked incomplete and are not sent through the AI pipeline.
+
+    <Note>
+      Hackathon mode is not available in the current version. Only Pitch Competition is active in the MVP. Hackathon support is coming in a future release.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Judging and scoring
+
+<AccordionGroup>
+  <Accordion title="Does AI Jury make the final decision?">
+    No. The AI scores are advisory — they give you a structured, consistent baseline to work from, but they do not determine the outcome.
+
+    The leaderboard is ranked by the **Jury Score** you enter after reviewing each report and conducting your live Q&A. The AI Total Score is shown alongside the Jury Score for reference, but it does not affect the ranking.
+  </Accordion>
+
+  <Accordion title="What happens if an AI judge fails?">
+    If one judge fails, the other judges continue and complete their analysis normally. The failed judge's dimensions are marked as "not scored" in the report, and that judge's scores are excluded from the aggregates.
+
+    The participant's status changes to `error`. You will see the error message in the participant table and a **Retry** button next to that participant. Other participants in the same project are not affected.
+
+    <Warning>
+      A participant in `error` state does not have a usable report. The AI analysis is not displayed when judge coverage is incomplete, because missing dimensions would produce inaccurate aggregate scores. Use the Retry button to re-run the full pipeline for that participant.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Can I re-run judging for a participant?">
+    Yes. If a participant has `error` status, a **Retry** button appears in the participant table and in the error message shown in the report. Clicking Retry re-runs the complete AI pipeline for that participant only — other participants are not affected.
+
+    Retry re-runs the pipeline from the beginning (Decoder → Judges → Summarizer → Scoring) and replaces any previously generated output for that participant.
+  </Accordion>
+
+  <Accordion title="Can I change criteria weights after starting judging?">
+    No. Criteria weights are locked the moment you click **Start Judging**. This ensures that the AI scores, your Jury Scores, and the leaderboard ranking are all calculated on the same basis.
+
+    If you need different weights, you must configure them in the wizard (step 3) before starting judging. Once the pipeline has run, the weights cannot be changed for that project.
+  </Accordion>
+
+  <Accordion title="Can I re-score a participant after submitting?">
+    Yes. After you submit a Jury Score, you can change any dimension score and click **Resubmit Vote**. The updated scores replace the previous submission.
+
+    If you change a score after submitting but navigate away without resubmitting, AI Jury will warn you that your changes have not been saved as a final vote.
+
+    <Note>
+      Re-scoring is only available while the project is in `reviewing` status. Once you generate the leaderboard and the project moves to `scored`, all scores are locked and cannot be changed.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Leaderboard
+
+<AccordionGroup>
+  <Accordion title="What score determines the leaderboard ranking?">
+    The leaderboard ranks participants by their **Jury Score** — the score you enter after reviewing the AI analysis and conducting your live Q&A. The AI Total Score is displayed alongside the Jury Score on the leaderboard for reference, but it has no effect on the ranking order.
+  </Accordion>
+
+  <Accordion title="Can I unlock the leaderboard to make edits after finalizing?">
+    Not in the current version. Once you confirm leaderboard generation and the project moves to `scored` status, all scores and rankings are permanent. Reports become read-only at the same time.
+
+    If you need to make changes, you would need to create a new project. Leaderboard unlocking and versioning are planned for a future release.
+  </Accordion>
+
+  <Accordion title="Can I export the leaderboard?">
+    Not currently. CSV and PDF export for the leaderboard is not available in the current version. Export functionality is planned for a future release.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Submissions
+
+<AccordionGroup>
+  <Accordion title="What is the public self-upload page?">
+    When you choose self-upload mode in the wizard, AI Jury generates a public submission page at `/e/<your-project-slug>`. This is a no-login page where participants can view event details and submit their pitch decks.
+
+    The page is generated automatically when you complete step 5 of the wizard. You can find and copy the URL from the Project Overview screen. The page shows event details including the submission deadline, and the **Submit** button is disabled automatically after the deadline passes.
+  </Accordion>
+
+  <Accordion title="Can participants resubmit after uploading?">
+    Yes. Participants can reopen their submission form and upload new materials at any time before the submission deadline. After the deadline, the public submission page shows a "Closed" status and the Submit button is disabled.
+  </Accordion>
+
+  <Accordion title="What does 'pending' status mean for a participant?">
+    `pending` means a submission record exists in your project but the required materials are not yet attached. This happens when:
+
+    - A participant started the self-upload flow but did not complete it (for example, they verified their email but did not upload a pitch deck).
+    - You added a participant manually without attaching a pitch deck file or URL.
+
+    A participant with `pending` status is not eligible for AI judging. They need to submit or be assigned a pitch deck before their status can change to `ready`.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Limits
+
+<AccordionGroup>
+  <Accordion title="Is there a file size limit for pitch decks?">
+    Yes. PDF and PPTX files must be 50 MB or smaller. If you need to submit a larger file, consider compressing images in the deck or converting to a different format.
+
+    Google Slides submissions are not subject to a file size limit — you paste the sharing URL directly.
+  </Accordion>
+
+  <Accordion title="How many AI judges evaluate each pitch?">
+    - **Pitch Competition** — 6 AI judges, each covering a different evaluation dimension (P1–P6).
+    - **Hackathon** — 5 AI judges, covering dimensions H1–H6 (one judge covers two dimensions through the role matrix).
+
+    All judges evaluate each submission in parallel and independently — no judge sees another judge's scores before submitting their own analysis.
+  </Accordion>
+</AccordionGroup>

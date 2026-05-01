@@ -1,0 +1,65 @@
+---
+title: "Generating and reading your leaderboard"
+description: "Generate the final leaderboard once you have scored participants, understand the ranking logic, and use read-only reports as your permanent record of results."
+---
+
+The leaderboard is the final step in the AI Jury workflow. It ranks participants by your Jury Scores — weighted by the criteria you set in the wizard — and freezes the project into a permanent, read-only record. Generating the leaderboard is irreversible, so it is worth scoring all participants before you proceed.
+
+## When you can generate the leaderboard
+
+The **Create Leaderboard** button becomes available once the project reaches `reviewing` status, which happens automatically when AI judging completes. You do not need to wait for all participants to be scored — but doing so gives you a complete ranking.
+
+<Tip>
+  Score all participants before generating the leaderboard. Once you confirm, all scoring inputs become read-only and cannot be changed.
+</Tip>
+
+## Generating the leaderboard
+
+<Steps>
+  <Step title="Open the Jury Review list">
+    From your dashboard or the project header, navigate to the **Jury Review** list. This shows every participant with their AI Mode Score and current scoring status.
+  </Step>
+  <Step title="Click Create Leaderboard">
+    When you are ready to finalize, click **Create Leaderboard**. A confirmation dialog appears.
+
+    If any participants do not yet have a submitted Jury Score, a warning appears listing the unscored entries. You can go back and score them, or proceed anyway — there is no hard block.
+  </Step>
+  <Step title="Confirm finalization">
+    Confirm in the dialog to generate the leaderboard. The project moves to `scored` status. All scoring inputs become read-only immediately.
+  </Step>
+</Steps>
+
+<Warning>
+  Finalizing the leaderboard is permanent. All Jury Scores, AI scores, and reports are locked. There is no unlock or edit flow after this point.
+</Warning>
+
+## Reading the leaderboard
+
+Participants are ranked from highest to lowest by their weighted Jury Score, calculated using the criteria weights you configured in step 3 of the wizard.
+
+**Leaderboard columns:**
+
+| Column | What it shows |
+|---|---|
+| Rank | Position based on weighted Jury Score |
+| Participant name | Submitted participant name |
+| Project name | Submitted project name |
+| Final score | Weighted Jury Score — the ranking basis |
+| AI Mode Score | The AI's weighted score — shown for reference, visually subdued |
+
+A summary block at the top of the leaderboard shows total participant count, the average Jury Score, and score distribution across the field.
+
+Click any row to open that participant's report in read-only mode. The report header shows **Finalized · \<date\>** to confirm the record is locked.
+
+<Note>
+  The leaderboard ranks by Jury Score, not by AI Score. The AI analysis informs your evaluation — it surfaces strengths, weaknesses, and questions you might not have caught on your own — but every position in the ranking reflects your human judgment.
+</Note>
+
+## After finalization
+
+Once the project is in `scored` status:
+
+- All participant reports are read-only. No scores, comments, or answer notes can be modified.
+- AI scores remain visible in every report as a reference alongside the final Jury Scores.
+- The leaderboard is the permanent record of results for the project.
+- From the dashboard, clicking the project card opens the leaderboard directly.

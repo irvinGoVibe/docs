@@ -1,0 +1,103 @@
+---
+title: 'How AI Jury works: end-to-end evaluation flow'
+description: 'Follow the organizer journey from login to leaderboard. Covers project lifecycle statuses, participant statuses, and how AI scores and Jury Scores interact.'
+---
+
+AI Jury moves you from raw pitch submissions to a final ranked leaderboard in seven steps. At each step the platform handles a distinct job: collecting materials, running the AI panel, supporting your live review, and locking in the results you choose. The AI score is always advisory — it informs your decision, never replaces it. The leaderboard ranks participants by your Jury Score, not the AI's.
+
+## The organizer journey
+
+Your path through AI Jury follows seven stages, from first login to a published leaderboard.
+
+<Steps>
+  <Step title="Login / Sign Up">
+    Sign in with email and password or Google OAuth. After authentication you land on your Dashboard.
+  </Step>
+  <Step title="Dashboard">
+    See all your projects at a glance. Create a new project, resume a draft, or open an existing one. Clicking a project card takes you to the right place based on its current status.
+
+    | Project status | Where the card takes you |
+    |---|---|
+    | `draft` | Back into the Wizard |
+    | `collecting` | Project Overview |
+    | `judging` | Project Overview (progress view) |
+    | `reviewing` | Jury Review |
+    | `scored` | Leaderboard |
+  </Step>
+  <Step title="Wizard">
+    Configure your project across five steps before any submissions arrive. The choices you make here — mode, criteria weights, and judge panel — are locked once you click **Start Judging**.
+
+    | Step | What you configure |
+    |---|---|
+    | 1 — Mode | Pitch Competition, Hackathon, or Custom |
+    | 2 — Details | Project name, description, dates, timezone |
+    | 3 — Criteria | Dimension weights (must sum to 100%) |
+    | 4 — Judges | Judge panel and routing matrix |
+    | 5 — Participants | Submission method and required materials |
+
+    Completing step 5 moves your project to `collecting` and opens Project Overview.
+  </Step>
+  <Step title="Project Overview">
+    Manage incoming submissions. You can add participants manually — uploading their pitch deck directly — or share a public link so participants submit their own materials. Either way, each submission appears in a table with its current status and materials checklist.
+
+    **Start Judging** becomes available as soon as at least one participant reaches `ready` status.
+  </Step>
+  <Step title="Start Judging">
+    Click **Start Judging** to launch the AI pipeline. The platform extracts and normalizes every pitch deck, then routes each submission through the full judge panel in parallel. A progress modal shows per-participant and per-judge status in real time. You can close the modal — the pipeline continues in the background. When all submissions are processed, the project moves to `reviewing`.
+  </Step>
+  <Step title="Jury Review">
+    Open each participant's report to see the full AI analysis: scores per dimension, strengths and weaknesses, red flags, evidence quotes, and suggested questions for live Q&A. After conducting your Q&A, enter your Jury Score for each dimension. Submit when all required criteria are filled. You can resubmit if you change your mind before generating the leaderboard.
+  </Step>
+  <Step title="Leaderboard">
+    Generate the leaderboard when you have reviewed the participants you want to rank. The platform warns you if any participants are unscored, but the decision to proceed is yours. Once you confirm, the project moves to `scored`, all inputs become read-only, and the leaderboard ranks participants by your Jury Scores weighted by your project criteria.
+  </Step>
+</Steps>
+
+## Project lifecycle
+
+A project moves through five statuses from creation to finalization.
+
+| Status | What it means |
+|---|---|
+| `draft` | The Wizard is incomplete. No submissions yet. |
+| `collecting` | The Wizard is complete. Submissions are open. |
+| `judging` | The AI pipeline is running. Criteria are locked. |
+| `reviewing` | AI analysis is ready. You are conducting Jury Review. |
+| `scored` | The leaderboard has been generated. Everything is read-only. |
+
+<Note>
+  `error` is not a separate project status — it is a flag that can appear alongside any status when something goes wrong with a specific submission or judge call.
+</Note>
+
+## Participant statuses
+
+Each participant moves through their own status sequence as the project progresses.
+
+| Status | What it means |
+|---|---|
+| `pending` | Submission received, but required materials may be missing. |
+| `ready` | All required materials are present. Eligible for AI judging. |
+| `processing` | The AI pipeline is actively evaluating this submission. |
+| `AI Report Ready` | AI analysis is complete. No Jury Score yet. |
+| `In Review` | You have opened the report and are conducting human evaluation. |
+| `Scored` | You have submitted a Jury Score for this participant. |
+
+<Tip>
+  A participant reaches `ready` as soon as a pitch deck is attached — either a file (PDF or PPTX) or a Google Slides URL.
+</Tip>
+
+## The core principle: AI advises, you decide
+
+AI Jury is built on a clear division of responsibility.
+
+| Layer | Role |
+|---|---|
+| **AI Score** | Advisory reference. Prepared by the judge panel based on the submitted materials. |
+| **Jury Score** | Final scoring input. Set by you during Jury Review, after reviewing the AI analysis and conducting live Q&A. |
+| **Leaderboard** | Ranks participants by Jury Score weighted by your project criteria — not by AI Score. |
+
+The AI analysis is visible throughout Jury Review and remains part of every participant report as an audit trail. It never overwrites or replaces your score.
+
+<Warning>
+  Dimension weights and project criteria are locked the moment you click **Start Judging**. AI Score, Jury Score, and the leaderboard are all calculated using the same weights, so changing them mid-process would make the scores incomparable.
+</Warning>

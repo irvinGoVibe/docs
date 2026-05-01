@@ -1,0 +1,76 @@
+---
+title: "What is AI Jury? The platform for pitch evaluation"
+description: "AI Jury helps competition and hackathon organizers evaluate pitch submissions with a panel of AI judges and finalize results with your own scoring."
+---
+
+AI Jury is a decision-support platform for organizers of pitch competitions, hackathons, and accelerator programs. You configure a project, collect pitch decks from participants, and run a panel of specialized AI judges that evaluate every submission — giving you structured analysis across multiple dimensions so you can make faster, more consistent final decisions.
+
+## The problem AI Jury solves
+
+Evaluating pitches at scale is hard. Reviewing a single submission thoroughly — deck, video, repository — can take an hour or more. When you have dozens or hundreds of entries, something has to give: either speed or quality. Even with enough time, human evaluation is vulnerable to fatigue, inconsistent scoring scales, and missed details.
+
+AI Jury addresses this by building an analysis layer between participants' materials and your final judgment. The AI does the time-consuming work of reading and scoring every submission against a consistent methodology. You use that analysis to make your own informed decisions — faster, with less cognitive load, and with a clear audit trail.
+
+## How it works
+
+The core model is straightforward: **AI judges provide advisory analysis → you set the final Jury Scores → the leaderboard ranks by those scores.**
+
+The AI never decides the outcome. Every ranking is built from scores you enter yourself, not from the AI's evaluation. The AI's role is to prepare the material so you can make a high-quality decision in minutes rather than hours.
+
+### The main flow
+
+<Steps>
+  <Step title="Create a project">
+    Use the five-step wizard to pick an evaluation mode, define your project details and criteria, configure the judge panel, and choose how participants will submit their materials.
+  </Step>
+  <Step title="Collect submissions">
+    Add participants yourself or share a public link so participants upload directly. AI Jury accepts pitch decks as PDF, PPTX, or Google Slides URLs.
+  </Step>
+  <Step title="Run AI judging">
+    Click **Start Judging**. The pipeline runs each submission through a decoder, a panel of AI judges, a summarizer, and a scoring layer. You get a structured report for every participant.
+  </Step>
+  <Step title="Review and finalize">
+    Open each participant's report, read the AI analysis, use the suggested questions in your live Q&A, and enter your Jury Scores. When you're ready, generate the leaderboard.
+  </Step>
+</Steps>
+
+## Who AI Jury is for
+
+AI Jury is built for the person running the event — the **organizer**. In the current version, one organizer manages each project end-to-end: creating it, collecting submissions, running AI judging, reviewing reports, scoring participants, and publishing the leaderboard.
+
+The platform is most useful for:
+
+- **Pitch competition organizers** evaluating startup or student pitches at scale
+- **Hackathon organizers** reviewing build projects with a focus on execution
+- **Accelerator and incubator programs** screening applications for cohorts
+
+<Note>
+  Participants don't log in to AI Jury. They either upload materials through a public submission page or have their materials added by the organizer.
+</Note>
+
+## Key capabilities
+
+**Judge panels for your format.** AI Jury ships with a Pitch Competition mode featuring six specialized AI judges covering Problem, Solution Logic, Business Value / Market, Pitch Quality, Team Readiness, and Feasibility (dimensions P1–P6). Hackathon and Custom modes are on the roadmap.
+
+**Flexible pitch deck support.** Upload PDF or PPTX files, or paste a Google Slides URL. The pipeline normalizes each format before judges evaluate it.
+
+**Structured AI reports.** Each participant gets a report with scores per dimension, confidence labels, strengths and weaknesses, red flags, direct quotes from the deck, suggested scores, and questions to ask the team live.
+
+**Human-in-the-loop scoring.** After reviewing the AI analysis, you enter your own Jury Scores (0–10 per dimension) using sliders in the Jury Preparation tab. The AI scores stay visible as a reference but don't feed directly into rankings.
+
+**Leaderboard by your decision.** The leaderboard ranks participants by Jury Score — the final scores you submit — weighted by the criteria you configured. AI scores appear as reference only.
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Walk through your first project end-to-end in a few minutes.
+  </Card>
+  <Card title="Core concepts" icon="lightbulb" href="/concepts/overview">
+    Understand the evaluation flow, pipeline stages, and scoring model.
+  </Card>
+  <Card title="AI judges" icon="gavel" href="/concepts/judges">
+    Learn about the judge panel, dimensions, and routing matrix.
+  </Card>
+  <Card title="Human-in-the-loop" icon="user-check" href="/concepts/human-in-the-loop">
+    See how Jury Scores work and how they differ from AI scores.
+  </Card>
+</CardGroup>

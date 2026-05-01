@@ -1,0 +1,83 @@
+---
+title: "Collecting submissions from participants"
+description: "Add participants manually from the Project Overview, or share a public link so participants upload their own pitch decks, videos, and repositories."
+---
+
+Once your project is in `collecting` status, the Project Overview becomes your workspace for gathering pitch materials. You can add participants yourself, let participants self-submit through a public page, or use both approaches in the same project. A participant is considered ready for AI judging as soon as they have a pitch deck — either an uploaded file or a Google Slides link.
+
+## Adding participants manually
+
+Use this method when you are managing an invited list or want full control over which submissions enter the project.
+
+<Steps>
+  <Step title="Open the add participant form">
+    From the Project Overview, click **Add participant**. A modal form opens.
+  </Step>
+  <Step title="Fill in the participant details">
+    Complete the form fields:
+
+    | Field | Required | Accepted formats |
+    |---|---|---|
+    | Participant name | Yes | Free text |
+    | Project name | Yes | Free text |
+    | Pitch deck | Yes (for `ready` status) | PDF or PPTX up to 50 MB, or a Google Slides URL |
+    | Video | No | URL |
+    | Repository | No | URL |
+    | Comment | No | Free text note visible only to you |
+
+    The pitch deck field accepts both file uploads and Google Slides URLs. Google Slides URLs are validated for format on entry.
+  </Step>
+  <Step title="Save the participant">
+    Click **Save**. The participant appears in the table immediately.
+
+    - If a pitch deck is attached, the participant's status is `ready`.
+    - If no deck is attached, the status is `pending`.
+
+    You can return to edit any participant at any time by clicking the row. To remove a participant, use the delete action — a confirmation dialog appears before anything is deleted.
+  </Step>
+</Steps>
+
+<Tip>
+  A participant only needs a pitch deck to reach `ready` status. Video, repository, and comment are optional and do not affect judging eligibility.
+</Tip>
+
+## Using the self-upload public page
+
+When you selected self-upload during the wizard, AI Jury created a public submission page at `/e/<slug>`. Share this URL with your participants — they do not need an account to view it.
+
+**What participants see on the public page:**
+
+- Event banner and project name
+- Status badge — **Live** while collecting, **Closed** after the deadline
+- Start and end dates
+- About description (from your project details)
+- How to Submit instructions
+- Required Information list (deck, video, repository — based on your wizard settings)
+- **Submit Your Entry** button
+
+When a participant clicks **Submit Your Entry**, they are prompted to create an account with email verification. Once verified, they can upload their materials and submit. Participants can resubmit and update their materials any number of times before the deadline.
+
+After the deadline passes:
+
+- The page status changes to **Closed**
+- The **Submit Your Entry** button is disabled
+- No new submissions or resubmissions are accepted
+
+Submissions from the public page appear in your Project Overview table automatically. If a participant submits without fulfilling all required materials, their entry appears with `pending` status and an incompleteness indicator so you can follow up.
+
+## Understanding participant status
+
+The status column in the participant table tells you at a glance whether each submission is ready for judging.
+
+| Status | Meaning |
+|---|---|
+| `pending` | Submission exists but is missing a pitch deck (or required materials on self-upload) |
+| `ready` | A pitch deck is attached — this participant can be judged |
+| `processing` | AI judging is running for this participant |
+| `AI Report Ready` | Judging is complete and the report is available |
+| `Scored` | You have submitted a Jury Score for this participant |
+| `error` | The AI pipeline encountered a problem — a retry option is shown |
+
+<Note>
+  The **Start Judging** button in the Project Overview activates only when at least one participant has `ready` status. Participants with `pending` status are skipped when judging runs.
+</Note>

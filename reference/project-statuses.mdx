@@ -1,0 +1,101 @@
+---
+title: 'Project and participant statuses in AI Jury'
+description: 'Reference for every project and participant status in AI Jury — what each status means, what triggers each transition, and how to resolve error states.'
+---
+
+Every project and every participant in AI Jury has a status that reflects where they are in the evaluation lifecycle. This page lists every status value you will see in the UI, explains what triggers each transition, and describes what to do when something goes wrong.
+
+## Project statuses
+
+Your project's status appears as a badge on the Dashboard card and in the project header. It changes automatically as you move through the setup and evaluation flow.
+
+| Status | What it means |
+|---|---|
+| `draft` | You have started the setup wizard but not yet completed all five steps. Clicking the project card returns you to the wizard. |
+| `collecting` | The wizard is complete and you are accepting participant submissions. Participants can be added manually or through the public self-upload page. |
+| `judging` | You have clicked **Start Judging** and the AI pipeline is actively processing submissions. Criteria are locked at this point and cannot be changed. |
+| `reviewing` | The AI pipeline has finished. All participants have been analyzed and you can now open reports, conduct live Q&A, and enter Jury Scores. |
+| `scored` | You have generated the leaderboard. All scores are finalized and all reports become read-only. |
+
+<Note>
+  `error` is not a standalone status — it is a flag that appears on top of the current status when something goes wrong during judging. The project remains in whatever status it was in (typically `judging` or `reviewing`) while the flag is visible.
+</Note>
+
+### Status flow
+
+Projects move through statuses in a single forward direction:
+
+```
+draft → collecting → judging → reviewing → scored
+```
+
+| Transition | What triggers it |
+|---|---|
+| `draft` → `collecting` | You complete step 5 of the wizard and save. |
+| `collecting` → `judging` | You click **Start Judging**. At least one participant must have `ready` status. |
+| `judging` → `reviewing` | The AI pipeline finishes processing all participants. |
+| `reviewing` → `scored` | You click **Create Leaderboard** and confirm. |
+
+<Warning>
+  The transition from `reviewing` to `scored` is permanent in the current version. Once you finalize the leaderboard, you cannot unlock it to make edits.
+</Warning>
+
+---
+
+## Participant statuses
+
+Each participant has their own status, visible in the participant table on the Project Overview screen and inside their report header. A participant's status advances independently of other participants.
+
+| Status | What it means |
+|---|---|
+| `pending` | A submission record exists, but required materials (such as a pitch deck) have not been attached yet. The participant is not eligible for AI judging. |
+| `ready` | The participant has all required materials. They are eligible for AI judging when you click **Start Judging**. |
+| `processing` | The AI pipeline is actively running for this participant (Decoder → Judges → Summarizer → Scoring). |
+| `AI Report Ready` | The AI pipeline has finished for this participant. The full report is available and you can enter a Jury Score. |
+| `In Review` | You have opened the participant's report. Human evaluation is in progress. |
+| `Vote Submitted` / `Scored` | You have submitted a Jury Score for this participant. They are ready to be included in the leaderboard. |
+| `Not Scored` | No Jury Score has been submitted yet. The AI report may be ready, but the participant will not have a Jury Score on the leaderboard. |
+| `error` | One or more AI judges failed during processing. The report is not available and the participant needs to be retried. |
+
+### Status flow
+
+Participants move through statuses in the following sequence:
+
+```
+pending → ready → processing → AI Report Ready → In Review → Scored
+```
+
+| Transition | What triggers it |
+|---|---|
+| `pending` → `ready` | A pitch deck (PDF, PPTX, or Google Slides URL) is attached to the submission. |
+| `ready` → `processing` | You click **Start Judging** at the project level. |
+| `processing` → `AI Report Ready` | All AI judges finish successfully for this participant. |
+| `AI Report Ready` → `In Review` | You open the participant's report. |
+| `In Review` → `Scored` | You submit a Jury Score for all required dimensions. |
+
+<Tip>
+  A participant can also carry a `Not Scored` label at any point after `AI Report Ready` if you have not yet submitted a vote. `Not Scored` and `Scored` reflect whether a Jury Score exists — they overlay the review-phase statuses rather than replacing them.
+</Tip>
+
+---
+
+## Error handling
+
+### Project-level error flag
+
+If any part of the AI pipeline encounters a problem, the `error` flag appears on the project card in the Dashboard and in the project header. The flag sits on top of the current status — for example, a project can show `judging · error` at the same time.
+
+To resolve a project-level error, go to the **Project Overview** screen and restart judging from there.
+
+### Participant-level error
+
+When an AI judge fails for a specific participant, that participant's status changes to `error`. The following applies:
+
+- The error message is visible in the participant table, explaining what went wrong.
+- A **Retry** button appears next to the participant. Clicking it re-runs the AI pipeline for that participant only.
+- Other participants in the same project are not blocked — their evaluation continues normally.
+- The participant's report is not shown while in `error` state. A partially complete report is not displayed because missing judge scores would produce inaccurate aggregates.
+
+<Warning>
+  Retrying a participant re-runs the full pipeline for that participant (Decoder → Judges → Summarizer → Scoring). Any previously completed judge output for that participant is discarded and replaced.
+</Warning>

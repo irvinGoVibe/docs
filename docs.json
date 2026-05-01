@@ -1,0 +1,64 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "AI Jury",
+  "theme": "almond",
+  "colors": {
+    "primary": "#6366F1",
+    "light": "#EEF2FF",
+    "dark": "#3730A3"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/irvinGoVibe/ai-jury-prod"
+    }
+  },
+  "navigation": {
+    "products": [
+      {
+        "product": "Documentation",
+        "tabs": [
+          {
+            "tab": "Guide",
+            "groups": [
+              {
+                "group": "Get Started",
+                "pages": [
+                  "introduction",
+                  "quickstart"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "concepts/overview",
+                  "concepts/judges",
+                  "concepts/scoring",
+                  "concepts/human-in-the-loop"
+                ]
+              },
+              {
+                "group": "Using AI Jury",
+                "pages": [
+                  "guides/create-project",
+                  "guides/collect-submissions",
+                  "guides/run-judging",
+                  "guides/review-reports",
+                  "guides/leaderboard"
+                ]
+              },
+              {
+                "group": "Reference",
+                "pages": [
+                  "reference/project-statuses",
+                  "reference/report-structure",
+                  "reference/faq"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

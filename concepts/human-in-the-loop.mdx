@@ -1,0 +1,126 @@
+---
+title: 'Human-in-the-loop: how you set the final scores'
+description: 'Learn how the human review layer works — from opening a participant report and conducting live Q&A to submitting your Jury Score and generating the leaderboard.'
+---
+
+AI Jury does not finalize any result on its own. The AI judge panel prepares a structured analysis of every submission — scores, strengths, weaknesses, red flags, and suggested questions — but you make every final scoring decision. The human-in-the-loop layer is where that decision happens: you review the AI analysis, conduct a live Q&A using AI-generated questions, enter your Jury Score for each dimension, and submit.
+
+## Why human-in-the-loop matters
+
+The AI judges work entirely from submitted materials. They cannot observe how a founder performs under pressure, how a team responds to hard questions, or whether an answer during live Q&A changes the picture significantly. You can. The human review layer is designed to bring that live context into the final score.
+
+| Layer | What it captures |
+|---|---|
+| AI Score | Signal from the submitted materials — deck, video, repository |
+| Jury Score | Your judgment after reviewing the AI analysis and conducting live Q&A |
+
+Both layers are preserved. After the leaderboard is generated, every participant report retains the AI Score alongside the Jury Score as a permanent audit trail.
+
+## When it starts
+
+Human-in-the-loop begins the moment you open a participant's report during Jury Review. There is no separate wizard or workflow to launch — the decision layer is built directly into the report.
+
+The typical sequence for one participant:
+
+<Steps>
+  <Step title="Open the report">
+    Navigate to the participant from the Jury Review list. The report opens to the Jury Preparation tab by default, which shows the AI Scoring Matrix and the Questions for Participants block.
+  </Step>
+  <Step title="Review the AI analysis">
+    Read the AI Score per dimension, the judge conclusions, strengths and weaknesses, and any red flags. The Executive Summary tab gives you the high-level picture; the Scores tab shows the full Judge Contribution Matrix with spread labels.
+  </Step>
+  <Step title="Use Questions for Participants">
+    During your live Q&A session with the team, use the AI-generated questions. See each question's linked criterion and the explanation of why it matters. Note answers in the optional answer notes field.
+  </Step>
+  <Step title="Enter your Jury Score">
+    Set your score for each dimension using the slider (0.0–10.0, in 0.1 increments). The delta between your score and the AI Score updates live. The AI Score stays visible as a read-only reference throughout.
+  </Step>
+  <Step title="Submit">
+    Once all required criteria are filled, click **Submit vote**. The participant status moves to `Scored`.
+  </Step>
+</Steps>
+
+## Jury Score input
+
+The scoring form gives you precise control over each dimension.
+
+- **Range:** 0.0 – 10.0
+- **Increment:** 0.1 (use **+** / **−** buttons for fine adjustments)
+- **Delta indicator:** Shows the difference between your score and the AI Score in real time — green when you score higher, red when lower, grey when equal
+- **AI Score:** Displayed read-only alongside every slider as an advisory reference
+
+The AI Score is intentionally visible while you are voting. This is a deliberate product decision: you should see the AI baseline when making your final call, not after.
+
+## Questions for Participants
+
+The Questions for Participants block surfaces AI-generated questions for your live Q&A. Each question comes with context so you know why it matters.
+
+| Field | Description |
+|---|---|
+| **Question** | The question text (read-only) |
+| **Linked criterion** | Which dimension (e.g., P3 — Market) the question relates to |
+| **Why it matters** | Explanation of what a strong or weak answer would signal |
+| **Answer notes** | Optional field for your notes from the live session |
+| **Status** | Mark as `Answered` or `Not answered` (optional) |
+
+Questions are grouped by priority:
+
+| Group | When to use |
+|---|---|
+| **Critical** | Ask these first — they target the highest-risk signals in the analysis |
+| **Important** | Cover these if time allows |
+| **Optional** | Use for deeper exploration when the session has room |
+
+Answer notes and status fields do not block submission — they are for your own record and the audit trail.
+
+## Submit and resubmit
+
+<AccordionGroup>
+  <Accordion title="Submit rules">
+    You can only submit when all required criteria have a Jury Score entered. If any required dimension is empty:
+
+    - The **Submit vote** button is disabled
+    - The form shows a warning indicating which criteria are missing
+    - The participant does not receive `Scored` status
+
+    Optional fields — comments, answer notes, question status — do not block submission.
+  </Accordion>
+  <Accordion title="Changing scores after submit">
+    You can revise scores after submitting. When you change any value after an initial submission, the form enters a `changed_after_submit` state:
+
+    - A **Resubmit vote** button replaces **Submit vote**
+    - A warning indicates that your changes are not saved as the final vote until you resubmit
+    - If you navigate away without resubmitting, the system warns you that unsaved changes will not count
+
+    Resubmit as many times as you need — until the leaderboard is generated.
+  </Accordion>
+  <Accordion title="After leaderboard generation">
+    Once you generate the leaderboard, the project moves to `scored`. All Jury Score inputs become read-only immediately. There is no way to unlock scoring after this point in the current version.
+  </Accordion>
+</AccordionGroup>
+
+## Participant statuses during review
+
+| Status | What it means |
+|---|---|
+| `AI Report Ready` | AI analysis is complete. You have not opened the report yet. |
+| `In Review` | You have opened the report and are actively evaluating. |
+| `Scored` | You have submitted a Jury Score. |
+| `Not Scored` | No Jury Score has been submitted yet. |
+
+<Note>
+  `Partially Scored` is not a participant status. If not all dimensions are filled, the participant stays `In Review` or `Not Scored` — partial votes are never saved as final.
+</Note>
+
+## Generating the leaderboard
+
+The leaderboard is a project-level action, not a per-participant one. When you are ready to finalize:
+
+1. Return to the Jury Review list to check which participants have `Scored` status
+2. Click **Generate Leaderboard**
+3. If any participants are unscored, the system shows a warning — you can proceed or go back to score them
+4. Confirm to finalize — the project moves to `scored`, all inputs lock, and the leaderboard is published
+
+<Tip>
+  The leaderboard ranks by Jury Score weighted by your project criteria, not by AI Score. AI Mode Score is shown as a reference column but does not affect ranking.
+</Tip>

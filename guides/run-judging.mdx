@@ -1,0 +1,62 @@
+---
+title: "Running AI judging on your submissions"
+description: "Start the AI judging pipeline from Project Overview, track per-participant and per-judge progress, handle pipeline errors, and know when judging completes."
+---
+
+When at least one participant has `ready` status, you can start the AI judging pipeline. The pipeline runs fully in the background — you can close the progress modal, navigate away, and come back later without interrupting anything. Each participant is evaluated by six specialized AI judges working in parallel, and results are ready within a few minutes per submission.
+
+## Starting the pipeline
+
+From the Project Overview, click **Start Judging**.
+
+- The project moves to `judging` status.
+- Your criteria weights are locked — they cannot be changed for the remainder of the project.
+- A progress modal opens showing the status of every participant and every judge.
+
+<Warning>
+  Once you click **Start Judging**, criteria weights are permanently locked. The AI scores, Jury scores, and leaderboard all share the same weights. If you need to adjust weights, do so before starting judging.
+</Warning>
+
+## How the pipeline works
+
+Each submission passes through four sequential stages:
+
+| Stage | What it does |
+|---|---|
+| **Decoder** | Extracts and normalizes text from the pitch deck (PDF, PPTX, or Google Slides). Caches the result so re-runs do not re-process the same file. |
+| **AI Judges** | Six specialized judges evaluate the submission in parallel, each producing scores, confidence ratings, strengths, weaknesses, and suggested questions for their assigned dimensions. |
+| **Summarizer** | Aggregates the six judge outputs into a single structured report — including a consolidated narrative, consensus signals, and deck completeness flags. |
+| **Scoring** | Calculates the confidence-adjusted AI score per dimension and the overall AI Mode Score using your criteria weights. |
+
+The Decoder runs first for each participant, then all six judges run simultaneously. The Summarizer and Scoring stages follow once every judge has finished.
+
+## Tracking progress
+
+The progress modal shows every participant as a row, with per-judge status inside each row.
+
+| Indicator | Meaning |
+|---|---|
+| `pending` | Not yet started |
+| `processing` | Stage is running |
+| `done` | Stage completed successfully |
+| `error` | Stage failed — see error handling below |
+
+Closing the modal does **not** stop the pipeline. The judges continue running in the background. Reopen the modal at any time from the Project Overview to check current status.
+
+To halt the pipeline before it finishes, click **Stop** in the progress modal. Stages that are already running will complete; no new stages will start after that point.
+
+## When judging completes
+
+Once the pipeline finishes for all participants:
+
+- Each successfully processed participant receives `AI Report Ready` status.
+- The project moves to `reviewing` status.
+- The Jury Review list becomes your new working view, showing every participant alongside their AI Mode Score.
+
+## Handling errors
+
+**If a single judge fails** for a participant, the report is still generated. The affected dimension is marked as "not scored" in that participant's report and excluded from score aggregation. Other judges and other participants are not affected.
+
+**If the Decoder fails** (for example, a malformed or password-protected file), the participant receives `error` status with a descriptive message. A **Retry** button lets you reprocess that participant after fixing the issue. All other participants continue through the pipeline normally.
+
+
